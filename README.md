@@ -35,6 +35,9 @@ The `jump-page` functions work a little bit differently than the rest of the rea
 ``auto_start``\
 Defaults to `no`. Automatically start the reader if valid images are detected.
 
+``disable_osc``\
+Defaults to `no`. Disables the OSC when manga reader is active.
+
 ``continuous``\
 Defaults to `no`. Tells the manga reader whether or not to start in continuous mode. This is mutually exclusive with double page mode.
 

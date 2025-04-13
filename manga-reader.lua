@@ -27,11 +27,13 @@ local msg_level = ""
 local upwards = false
 local init_values = {
 	force_window = false,
+	osc = true,
 	image_display_duration = 1,
 	msg_level = "",
 }
 local opts = {
 	auto_start = false,
+	disable_osc = false,
 	continuous = false,
 	continuous_size = 8,
 	double = false,
@@ -543,10 +545,14 @@ end
 
 function set_properties()
 	init_values.force_window = mp.get_property_bool("force-window")
+	init_values.osc = mp.get_property_bool("osc")
 	init_values.image_display_duration = mp.get_property("image-display-duration")
 	init_values.msg_level = mp.get_property("msg-level")
 	mp.set_property_bool("force-window", true)
 	mp.set_property("image-display-duration", "inf")
+	if opts.disable_osc then
+		mp.set_property_bool("osc", false)
+	end
 	if init_values.msg_level == "" then
 		mp.set_property("msg-level", "ffmpeg=error")
 	else
@@ -556,6 +562,7 @@ end
 
 function restore_properties()
 	mp.set_property_bool("force-window", init_values.force_window)
+	mp.set_property_bool("osc", init_values.osc)
 	mp.set_property("image-display-duration", init_values.image_display_duration)
 	mp.set_property("msg-level", init_values.msg_level)
 end
